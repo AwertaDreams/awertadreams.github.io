@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCF | How to make minigolf maps</title>
+    <link rel="stylesheet" href="../global.css" >
+</head>
+<body>
+    <h1>How to make a minigolf map</h1>
+    <h4>So you want to make a minigolf map? ILL TEACH YOU.</h4>
+    
+    <article>
+        <span class="warning">WARNING: Do not use materials that are not in this list. If the ball lands on them you will get out of bounds and repeated +1 strokes. Example of wrongly used material:</span>
+        <br>
+        <img src="../assets/images/golf_error.png" width="500px">
+        <br> 
+        <span class="warning">Good usage of material:</span>
+        <br>
+        <img src="../assets/images/golf_success.png" width="500px">
+        <br>
+        <span class="warning">list:</span>
+        <pre>
+            SafeMaterials = {
+                -- Materials that are safe for the ball to be on
+                "tools/toolsnodraw",
+                "golf/grass_in",
+                "golf/sand",
+                "golf/puttputt_sand",
+                "golf/puttputt_grass",
+                "dev/dev_measuregeneric01b",
+                "gmod_tower/mrsaturnvalley/saturn_grass",
+                "gmod_tower/minigolf/green",
+                "wood/milbeams002",
+                "maps/gmt_minigolf_02/nature/blendrockslime01a_wvt_patch",
+                "gmod_tower/minigolf/sand",
+                "gmod_tower/minigolf/zen_green",
+                "stone/stonewall033a",
+                "garden/gravel_waves_single",
+                "garden/gravel_waves",
+                "maps/gmt_minigolf_zen/concrete/blendbunk_conc01_wvt_patch",
+                "gmod_tower/minigolf/snowfall/snowfall_mainsnow",
+                "gmod_tower/minigolf/snowfall/snowfall_mainice",
+                "gmod_tower/minigolf/snowfall/snowfall_iceslide",
+                "gmt_minigolf_moon/grass_in_blue",
+                "metal/metalhull003a",
+                "metal/metalfence007a",
+                "gmod_tower/minigolf/forest/green_checkers",
+                "cs_havana/woodm",
+                "gmod_tower/minigolf/puttputt_wood_in",
+                "gmt_minigolf_desert/desert_brick_edge",
+                "gmt_minigolf_desert/desert_floor_tile",
+                "gmt_minigolf_desert/desert_puttputt_start",
+                "gmt_minigolf_desert/desert_stone"
+            }
+            
+            SandMaterials = {
+                "gmod_tower/minigolf/sand",
+                "golf/sand",
+                "garden/gravel_waves_single",
+                "garden/gravel_waves"
+            }
+            
+            IceMaterials = {
+                "gmod_tower/minigolf/snowfall/snowfall_mainice",
+                "gmod_tower/minigolf/snowfall/snowfall_iceslide"
+            }
+        </pre>
+        <br>
+        <span>First, create a new map and name it <code>gmt_minigolf_ANYTHING</code> where ANYTHING is the map name you desire</span>
+        <br>
+        <span>Make a small box, in which you want to hold the player</span>
+        <br>
+        <img src="../assets/images/golf01.png" width="500px">
+        <h1>1. Making holes</h1>
+        <br>
+        <span>Now, place down new entity which will be prop_dynamic, and set it to the same model (<code>models/sunabouzu/golf_hole02.mdl</code>) as shown on picture. You want to make sure its in the ground, so we can use it later to make a perfect hole</span>
+        <br>
+        <img src="../assets/images/golf02.png" width="500px">
+        <br>
+        <span>Now, make a cylinder shaped block, and place it down the hole. Make sure it kinda matches up with the hole. Hit the carve button while the cylinder is selected.</span>
+        <br>
+        <img src="../assets/images/golf03.png" width="500px">
+        <br>
+        <span>You should end up with something like this:</span>
+        <br>
+        <img src="../assets/images/golf04.png" width="500px">
+        <br>
+        <span>A perfect hole, who doesn't love that look. Now, select the brush tool, pop down a trigger in that hole. Press <code>ctrl + t</code> to bring up the object properties menu, and set the class to <code>golfhole</code></span>
+        <br>
+        <img src="../assets/images/golf_unknown.png" width="500px">
+        <br>
+        <h1>2. Making the map actually playable</h1>
+        <span>So, the minimal shit your map needs is a 4 entities.</span>
+        <span>They are named: <code>info_player_start, golfwaiting, golfhole, golfstart</code></span>
+        
+        
+        <br>
+        <span>In the room you just made, place down <code>golfwaiting</code> - this room will be the "waiting for players to join" room where you practice putts</span>
+        <br>
+        <code>info_player_start - Spawn for players</code>
+        <br>
+        <code>golfwaiting - Entity that defines the room where people will practice putts</code>
+        <br>
+        <code>golfhole - Trigger that upon touching with a minigolf ball will fire</code>
+        <br>
+        <code>golfstart - Defines the hole. It's name, amount needed for par, and hole number</code>
+        <br>
+        <img src="../assets/images/golf05.png" width="500px">
+        <br>
+        <span>Now make a second room, it will be a hole 1 course</span>
+        <br>
+        <span>Place down <code>info_player_start</code> <span class="warning">Warning: only place one.</span> and place down <code>golfstart</code></code></span>
+        <br>
+        <img src="../assets/images/golf06.png" width="500px">
+        <br>
+        <span>Repeat the steps from the waiting room, but dont place down <code>golfwaiting</code></span>
+        <br>
+        <span>Once you're done making the areas, decorating them etc, compile your map and run it</span>
+        <h1>3. Setting the position of holes</h1>
+        <span>Once you loaded the map, you want to position yourself over a hole with noclip, and type <code>getpos</code> into console</span>
+        <span>The output should look something like this: <code>setpos -374.638000 992.229004 82.795265;setang 88.538010 111.624016 0.000000</code></span>
+        <br>
+        <img src="../assets/images/golf07.png" width="500px">
+        <br>
+        <span>Now, go back to hammer, select the hole you were at and click it. Create a new key called "origin" with the setpos value. Example: </span>
+        <br>
+        <img src="../assets/images/golf08.png" width="500px">
+        <br>
+        <span>Do this for every other hole in the map</span>
+        <br>
+        <span>If you wont do this step, flags will appear in weird places</span>
+        <br>
+        <img src="../assets/images/wrong_flag.png" width="500px">
+        <br>
+        <span>This is how flags should appear if you repeat the process with every other hole:</span>
+        <br>
+        <img src="../assets/images/good_flag.png" width="500px"> 
+        <h1>4. Ending words</h1>
+        <span>In every map you need 18 holes, or else the gamemode will freak out. Thanks for reading the guide, i had fun making it. I hope you will have fun like i did :D</span>
+    </article>
+    <hr>
+    <a href="../guide_picker.html">Go back</a>
+</body>
+</html>
